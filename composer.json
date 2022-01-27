@@ -5,7 +5,7 @@
             "Router\\": "./routes/"
         }
     },
-
+        
     "require": {
         "doctrine/orm": "^2.10",
         "symfony/proxy-manager-bridge": "^6.0",

@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManager;
 require_once "vendor/autoload.php";
 require_once 'dotenv.php';
 
+(new DotEnv())->load();
+
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
 $proxyDir = __DIR__."/src/Proxies";
