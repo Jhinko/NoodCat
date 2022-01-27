@@ -10,6 +10,10 @@ require_once 'dotenv.php';
 
 (new DotEnv())->load();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f7a44a4... premier commit avec ajout des entités Cat, CatBar, Table, Reservation, PicturesCate et leurs annotations Doctrines
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
 $proxyDir = __DIR__."/src/Proxies";
