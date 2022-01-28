@@ -23,12 +23,12 @@ $router->post("/CustomerM/:id", "App\Controllers\CustomerControllers@modify");
 $router->get("/CustomerA/:id", "App\Controllers\CustomerControllers@add");
 $router->post("/CustomerA/:id", "App\Controllers\CustomerControllers@add");
 
-$router->get("/Playmaster", "App\Controllers\PlayMasterControllers@showAll");
-$router->get("/PlaymasterD/:id", "App\Controllers\PlayMasterControllers@delete");
-$router->get("/PlaymasterM/:id", "App\Controllers\PlayMasterControllers@modify");
-$router->post("/PlaymasterM/:id", "App\Controllers\PlayMasterControllers@modify");
-$router->get("/PlaymasterA/:id", "App\Controllers\PlayMasterControllers@add");
-$router->post("/PlaymasterA/:id", "App\Controllers\PlayMasterControllers@add");
+$router->get("/Paymaster", "App\Controllers\PlayMasterControllers@showAll");
+$router->get("/PaymasterD/:id", "App\Controllers\PlayMasterControllers@delete");
+$router->get("/PaymasterM/:id", "App\Controllers\PlayMasterControllers@modify");
+$router->post("/PaymasterM/:id", "App\Controllers\PlayMasterControllers@modify");
+$router->get("/PaymasterA/:id", "App\Controllers\PlayMasterControllers@add");
+$router->post("/PaymasterA/:id", "App\Controllers\PlayMasterControllers@add");
 
 $router->get("/PDG", "App\Controllers\PDGControllers@showAll");
 $router->get("/PDGD/:id", "App\Controllers\PDGControllers@delete");
