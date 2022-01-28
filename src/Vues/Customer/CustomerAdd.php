@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<form method="POST" action="/CustomerA/:id">
+<form method="POST" action="/CustomerA">
         <label for="email">EMAIL:</label>
         <input name="email" type="email" required />
 
