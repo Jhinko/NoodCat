@@ -4,27 +4,26 @@ namespace App\Controllers;
 
 session_start();
 
-use App\Entity\CatBar;
+use App\Entity\Cat;
 use App\Helpers\EntityHelpers as EH;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 
-class CatBarControllers
+class CatControllers
 {
-
     const NEEDS = [
         "id",
-        "name_bar",
-        "location"
+        "name",
+        "num_chip"
     ];
 
     public function showAll()
     {
         $entityManager = EH::getRequireEntityManager();
-        $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\CatBar"));
-        $CatBar = $repository->findAll();
-        print $CatBar; //je suis pas sur que cela soit juste!!
+        $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\Cat"));
+        $aCat = $repository->findAll();
+        print $aCat; //je suis pas sur que cela soit juste!!
     }
 
     public function add()
@@ -35,19 +34,19 @@ class CatBarControllers
             if (!array_key_exists($value, $_POST)) {
                 $_SESSION["error"] = "Il manque des champs à remplir";
 
-                include __DIR__ . "/../Vues/CatBar/AddCatBar.php";
+                include __DIR__ . "/../Vues/CatBar/AddCat.php";
                 die();
             }
             $_POST[$value] = htmlentities(strip_tags($_POST[$value]));
         }
 
-        $CatBar = new CatBar((int) $_POST["id"], $_POST["name_bar"], $_POST["location"]);
+        $Cat = new Cat((int) $_POST["id"], $_POST["name_bar"], $_POST["location"]);
 
         $entityManager = EH::getRequireEntityManager();
-        $entityManager->persist($CatBar);
+        $entityManager->persist($Cat);
         $entityManager->flush();
 
-        include __DIR__ . "/../Vues/CatBar/AddCatBar.php";
+        include __DIR__ . "/../Vues/Cat/AddCat.php";
         die();
     }
 
@@ -56,14 +55,14 @@ class CatBarControllers
         $entityManager = EH::getRequireEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\Cat"));
 
-        $catBar = $repository->find((int)$sId);
+        $cat = $repository->find((int)$sId);
 
         if (!empty($_POST)) {
             foreach (self::NEEDS as $value) {
                 $existe = array_key_exists($value, $_POST);
                 if ($existe === false) {
                     echo "Des paramètres sont manquant";
-                    include __DIR__ . "/../Vues/CatBar/ModifyCatBar.php";
+                    include __DIR__ . "/../Vues/Cat/ModifyCat.php";
                     die();
                 }
 
@@ -71,36 +70,36 @@ class CatBarControllers
 
                 if ($_POST[$value] === "") {
                     echo "Il manque des champs...";
-                    include __DIR__ . "/../Vues/CatBar/ModifyCatBar.php";
+                    include __DIR__ . "/../Vues/Cat/ModifyCat.php";
                     die();
                 }
             }
 
-            $catBar->setId((int)$_POST["id"]);
-            $catBar->setName_bar($_POST["name_bar"]);
-            $catBar->setLocation($_POST["location"]);
+            $cat->setId((int)$_POST["id"]);
+            $cat->setName($_POST["name"]);
+            $cat->setNum_chip($_POST["num_chip"]);
 
-            $entityManager->persist($catBar);
+            $entityManager->persist($cat);
             $entityManager->flush();
 
             echo "Information well edit";
         }
 
-        include __DIR__ . "/../Vues/CatBar/ModifyCatBar.php";
+        include __DIR__ . "/../Vues/Cat/ModifyCat.php";
         }
-    
+
 
     public function delete(string $sId)
-    { 
-            $entityManager = EH::getRequireEntityManager();
-            $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\DeleteCatBar"));
+    {
 
-            $catBar = $repository->find($sId);
+        $entityManager = EH::getRequireEntityManager();
+        $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\DeleteCat"));
 
-            $entityManager->persist($catBar);
-            $entityManager->flush();
+        $cat = $repository->find($sId);
 
-            echo "Data well delete";
-        }
-    
+        $entityManager->persist($cat);
+        $entityManager->flush();
+
+        echo "Data well delete";
     }
+}

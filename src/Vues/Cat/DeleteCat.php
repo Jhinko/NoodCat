@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page modify Cat Bar</title>
+    <title>Page Delete Cat Data</title>
 
     <style>
         #form_controller {
@@ -44,17 +44,17 @@ session_start();
 
 
 
-    <form action="/CatBarM/:id" method="POST" id="form_controller">
+    <form action="/CatD/:id" method="POST" id="form_controller">
         <label for="id">Id: </label>
         <input type="int" name="id" id="id" class="radius">
 
-        <label for="name_bar">Name bar </label>
-        <input type="text" name="name_bar" id="name_bar" class="radius">
+        <label for="name">Name bar </label>
+        <input type="text" name="name" id="name" class="radius">
 
-        <label for="location">Location </label>
-        <input type="text" name="location" id="location" class="radius">
+        <label for="num_chip">Chip number </label>
+        <input type="text" name="num_chip" id="num_chip" class="radius">
 
-        <input type="submit" value="SAVE MODIFICATION" class="radius">
+        <input type="submit" value="DELETE CAT DATA" class="radius">
     </form>
 </body>
 

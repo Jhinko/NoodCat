@@ -41,8 +41,8 @@ $router->get("/CatBar", "App\Controllers\CatBarControllers@showAll");
 $router->get("/CatBarD/:id", "App\Controllers\CatBarControllers@delete");
 $router->get("/CatBarM/:id", "App\Controllers\CatBarControllers@modify");
 $router->post("/CatBarM/:id", "App\Controllers\CatBarControllers@modify");
-$router->get("/CatBarA/:id", "App\Controllers\CatBarControllers@add");
-$router->post("/CatBarA/:id", "App\Controllers\CatBarControllers@add");
+$router->get("/CatBarA", "App\Controllers\CatBarControllers@add");
+$router->post("/CatBarA", "App\Controllers\CatBarControllers@add");
 
 $router->get("/Table", "App\Controllers\TableControllers@showAll");
 $router->get("/TableD/:id", "App\Controllers\TableControllers@delete");
@@ -55,8 +55,8 @@ $router->get("/Cat", "App\Controllers\CatControllers@showAll");
 $router->get("/CatD/:id", "App\Controllers\CatControllers@delete");
 $router->get("/CatM/:id", "App\Controllers\CatControllers@modify");
 $router->post("/CatM/:id", "App\Controllers\CatControllers@modify");
-$router->get("/CatA/:id", "App\Controllers\CatControllers@add");
-$router->post("/CatA/:id", "App\Controllers\CatControllers@add");
+$router->get("/CatA", "App\Controllers\CatControllers@add");
+$router->post("/CatA", "App\Controllers\CatControllers@add");
 
 $router->get("/PictureCat", "App\Controllers\PictureCatControllers@showAll");
 $router->get("/PictureCatD/:id", "App\Controllers\PictureCatControllers@delete");
@@ -76,3 +76,5 @@ $router->get("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
+
+$router->run();
