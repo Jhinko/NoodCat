@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class Table
+class TableReserv
 {
     /**
      * @ORM\Id
@@ -26,9 +26,8 @@ class Table
      */
     private int $num_pad;
 
-    public function __construct(int $id, int $num_place, int $num_pad)
+    public function __construct(int $num_place, int $num_pad)
     {
-        $this->id = $id;
         $this->num_place = $num_place;
         $this->num_pad = $num_pad;
     }

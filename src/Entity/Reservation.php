@@ -29,10 +29,10 @@ class Reservation
     private Cat $cat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Table")
+     * @ORM\ManyToOne(targetEntity="TableReserv")
      * @ORM\JoinColumn(name="table_id", referencedColumnName="id")
      */
-    private Table $table;
+    private TableReserv $table;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
@@ -40,7 +40,7 @@ class Reservation
      */
     private Customer $customer;
 
-    public function __construct(int $id, DateTime $date_reservation, Cat $cat, Table $table, Customer $customer)
+    public function __construct(int $id, DateTime $date_reservation, Cat $cat, TableReserv $table, Customer $customer)
     {
         $this->id = $id;
         $this->date_reservation = $date_reservation;
@@ -112,7 +112,7 @@ class Reservation
     /**
      * Get the value of table
      */
-    public function getTable(): Table
+    public function getTable(): TableReserv
     {
         return $this->table;
     }

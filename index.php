@@ -2,9 +2,11 @@
 
 namespace App;
 
-use Router\Router\Router;
 
 require_once("vendor/autoload.php");
+
+use Router\Router;
+
 
 
 $router = new Router($_GET['url']);
@@ -13,8 +15,8 @@ $router->get("/User", "App\Controllers\UserControllers@showAll");
 $router->get("/UserD/:id", "App\Controllers\UserControllers@delete");
 $router->get("/UserM/:id", "App\Controllers\UserControllers@modify");
 $router->post("/UserM/:id", "App\Controllers\UserControllers@modify");
-$router->get("/UserA/:id", "App\Controllers\UserControllers@add");
-$router->post("/UserA/:id", "App\Controllers\UserControllers@add");
+$router->get("/UserA", "App\Controllers\UserControllers@add");
+$router->post("/UserA", "App\Controllers\UserControllers@add");
 
 $router->get("/Customer", "App\Controllers\CustomerControllers@showAll");
 $router->get("/CustomerD/:id", "App\Controllers\CustomerControllers@delete");
@@ -46,10 +48,10 @@ $router->post("/CatBarA/:id", "App\Controllers\CatBarControllers@add");
 
 $router->get("/Table", "App\Controllers\TableControllers@showAll");
 $router->get("/TableD/:id", "App\Controllers\TableControllers@delete");
-$router->get("/TableM/:id", "App\Controllers\TableControllers@modify");
 $router->post("/TableM/:id", "App\Controllers\TableControllers@modify");
-$router->get("/TableA/:id", "App\Controllers\TableControllers@add");
-$router->post("/TableA/:id", "App\Controllers\TableControllers@add");
+$router->get("/TableM/:id", "App\Controllers\TableControllers@modify");
+$router->post("/TableA", "App\Controllers\TableControllers@add");
+$router->get("/TableA", "App\Controllers\TableControllers@add");
 
 $router->get("/Cat", "App\Controllers\CatControllers@showAll");
 $router->get("/CatD/:id", "App\Controllers\CatControllers@delete");
@@ -76,3 +78,5 @@ $router->get("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
+
+$router->run();

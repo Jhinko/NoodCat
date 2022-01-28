@@ -1,5 +1,5 @@
 <?php
-namespace Router\Route;
+namespace Router;
 
 class Route{
 

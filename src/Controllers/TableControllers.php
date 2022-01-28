@@ -4,19 +4,16 @@ namespace App\Controllers;
 
 session_start();
 
-use App\Entity\User;
+use App\Entity\TableReserv;
 use App\Helpers\EntityManagerHelpers as Em;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
-class UserControllers
+class TableControllers
 {
     const REQUIRES = [
-        "lastname", 
-        "firstname",
-        "mail",
-        "password",
-        "age"
+        "num_place", 
+        "num_pad"
 ];
 
     public function showAll()
@@ -24,7 +21,7 @@ class UserControllers
         $em = Em::getEntityManager();
         $repo = new EntityRepository(
             $em,
-            new ClassMetadata('App\Entity\User')
+            new ClassMetadata('App\Entity\Table')
         );
 
         $oTable = $repo->findAll();
@@ -36,26 +33,26 @@ class UserControllers
             $_POST[$value] = htmlentities(strip_tags(trim($_POST[$value])));
             if ($_POST[$value] === '') {
                 $_SESSION['error'] = 'Veuillez remplir tous les champs ! ';
-                include __DIR__ . "/../Vues/Table/AddUser.php";
+                include __DIR__ . "/../Vues/Table/AddTable.php";
                 exit();
             }
                 if (!array_key_exists($value, $_POST)) {
                     $_SESSION['error'] = 'Veuillez remplir tous les champs ! ';
-                    include __DIR__ . "/../Vues/Table/AddUser.php";
+                    include __DIR__ . "/../Vues/Table/AddTable.php";
                     exit();
                 }
             }
             
-        $aUser = new User($_POST['lastname'],$_POST['firstname'],$_POST['mail'],$_POST['password'], (int) $_POST['age']);
+        $aTable = new TableReserv((int) $_POST['num_place'], (int) $_POST['num_pad']);
         // var_dump((int) $_POST['num_place'], (int) $_POST['num_pad']);
         // die('---END---');
         $em = Em::getEntityManager();
-        $em->persist($aUser);
+        $em->persist($aTable);
         // var_dump($aTable);
         // die('---END---');
         $em->flush();
         
-        include __DIR__ . "/../Vues/Table/AddUser.php";
+        include __DIR__ . "/../Vues/Table/AddTable.php";
     }
 
     public function modify(string $sId)
@@ -63,43 +60,34 @@ class UserControllers
         $em = Em::getEntityManager();
         $repo = new EntityRepository(
             $em,
-            new ClassMetadata('App\Entity\User')
+            new ClassMetadata('App\Entity\TableReserv')
         );
 
-        $mUser = $repo->find($sId);
+        $mTableReserv = $repo->find($sId);
 
         if (!empty($_POST)) {
             foreach (self::REQUIRES as $value) {
                 $exist= array_key_exists($value, $_POST);
                 if ($exist === false) {
                     echo "Erreur";
-                    include __DIR__ . "/../Vues/Table/ModifyUser.php";
+                    include __DIR__ . "/../Vues/Table/ModifyTable.php";
                     exit;
                 }
                 $_POST[$value] = trim(htmlentities(strip_tags($_POST[$value])));
                 if ($_POST[$value] === "") {
                     echo "champs $value vide";
-                    include __DIR__ . "/../Vues/Table/ModifyUser.php";
+                    include __DIR__ . "/../Vues/Table/ModifyTable.php";
                     exit;
 
                 }
             }
 
-            if ($_POST["lastname"] !== $mUser->getLastname()) {
-                $mTableReserv->setLastname($_POST["lastname"]);
+            if ($_POST["num_place"] !== $mTableReserv->getNum_place()) {
+                $mTableReserv->setNum_place($_POST["num_place"]);
             }
             
-            if ($_POST["lastname"] !== $mUser->getFirstname()) {
-                $mTableReserv->setFirstname($_POST["firstname"]);
-            }
-            if ($_POST["mail"] !== $mUser->getMail()) {
-                $mTableReserv->setMail($_POST["mail"]);
-            }
-            if ($_POST["password"] !== $mUser->getPassword()) {
-                $mTableReserv->setPassword($_POST["password"]);
-            }
-            if ($_POST["age"] !== $mUser->getAge()) {
-                $mTableReserv->setAge($_POST["age"]);
+            if ($_POST["num_pad"] !== $mTableReserv->getNum_pad()) {
+                $mTableReserv->setNum_pad($_POST["num_pad"]);
             }
 
             $em->persist($mTableReserv);
@@ -107,17 +95,17 @@ class UserControllers
 
         }
 
-        include __DIR__ . "/../Vues/Table/ModifyUser.php";
+        include __DIR__ . "/../Vues/Table/ModifyTable.php";
     }
 
     public function delete(string $sId)
     {
         $em = Em::getEntityManager();
-        $repo = new EntityRepository($em, new ClassMetadata("App\Entity\User"));
+        $repo = new EntityRepository($em, new ClassMetadata("App\Entity\TableReserv"));
 
-        $dUser = $repo->find($sId);
+        $dTable = $repo->find($sId);
 
-        $em->remove($dUser);
+        $em->remove($dTable);
         $em->flush();
     }
 }
