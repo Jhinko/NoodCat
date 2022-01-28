@@ -9,10 +9,6 @@ require_once 'dotenv.php';
 
 (new DotEnv())->load();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f7a44a476d49e6240cd189150f594dd58f8f3464
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
 $proxyDir = __DIR__."/src/Proxies";
